@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5916c44dfdcb90308e77c3cfa580df75 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed;
+bottom: 50px; left: 50px; width: 150px; height: 100px;
+border:2px solid grey; z-index:9999; font-size:14px;
+background-color:white;
+">
+<b>Kategori Risiko</b> <br>
+<i class="fa fa-circle fa-1x" style="color:red"></i> Tinggi <br>
+<i class="fa fa-circle fa-1x" style="color:orange"></i> Sedang <br>
+<i class="fa fa-circle fa-1x" style="color:green"></i> Rendah
+</div>
+    
+            <div class="folium-map" id="map_5916c44dfdcb90308e77c3cfa580df75" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5916c44dfdcb90308e77c3cfa580df75 = L.map(
+                "map_5916c44dfdcb90308e77c3cfa580df75",
+                {
+                    center: [-2.5489, 118.0149],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 5,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+            L.control.scale().addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+
+            
+
+        
+    
+            var tile_layer_810484b1254bc700b107c899189827d4 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+            var circle_marker_30c4a0d6149d3c259e580d5849818d4c = L.circleMarker(
+                [4.8114844, 95.7001915],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_a69216c36ad9ef53e0de8737be0933f2 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_bfc422f3e2af66a7aa0bf85ca7929667 = $(`<div id="html_bfc422f3e2af66a7aa0bf85ca7929667" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Aceh Jaya<br><b>Area:</b> 50 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_a69216c36ad9ef53e0de8737be0933f2.setContent(html_bfc422f3e2af66a7aa0bf85ca7929667);
+            
+        
+
+        circle_marker_30c4a0d6149d3c259e580d5849818d4c.bindPopup(popup_a69216c36ad9ef53e0de8737be0933f2)
+        ;
+
+        
+    
+    
+            var circle_marker_d0f509876963ada4fbd83088cf119de2 = L.circleMarker(
+                [-5.4066541, 119.5375417],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_8f2c47ce3002f923cfe574b0b625545d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1b87444574b50797a434951663239d9a = $(`<div id="html_1b87444574b50797a434951663239d9a" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Takalar<br><b>Area:</b> 75 Ha<br><b>Total Risiko:</b> 40<br><b>Kategori:</b> Sedang</div>`)[0];
+                popup_8f2c47ce3002f923cfe574b0b625545d.setContent(html_1b87444574b50797a434951663239d9a);
+            
+        
+
+        circle_marker_d0f509876963ada4fbd83088cf119de2.bindPopup(popup_8f2c47ce3002f923cfe574b0b625545d)
+        ;
+
+        
+    
+    
+            var circle_marker_1503cbc5a293ff6234931086b5f4f7b5 = L.circleMarker(
+                [-3.8440385, 114.9888593],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_f29d73e888951f5e4bbad8b2a6b40f1d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_410bf7d5ffc97e26f8fb32d64b41c313 = $(`<div id="html_410bf7d5ffc97e26f8fb32d64b41c313" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Tanah Laut<br><b>Area:</b> 30 Ha<br><b>Total Risiko:</b> 60<br><b>Kategori:</b> Tinggi</div>`)[0];
+                popup_f29d73e888951f5e4bbad8b2a6b40f1d.setContent(html_410bf7d5ffc97e26f8fb32d64b41c313);
+            
+        
+
+        circle_marker_1503cbc5a293ff6234931086b5f4f7b5.bindPopup(popup_f29d73e888951f5e4bbad8b2a6b40f1d)
+        ;
+
+        
+    
+    
+            var circle_marker_f620c504d7a4817645c181a58ae3b190 = L.circleMarker(
+                [-5.111704, 104.3057867],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_b6e51c6067f49fdab6fbb6a2bbe7726e = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d1f8b0a4c97deda461dcf0e801f682f4 = $(`<div id="html_d1f8b0a4c97deda461dcf0e801f682f4" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Lampung Barat<br><b>Area:</b> 60 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_b6e51c6067f49fdab6fbb6a2bbe7726e.setContent(html_d1f8b0a4c97deda461dcf0e801f682f4);
+            
+        
+
+        circle_marker_f620c504d7a4817645c181a58ae3b190.bindPopup(popup_b6e51c6067f49fdab6fbb6a2bbe7726e)
+        ;
+
+        
+    
+    
+            var circle_marker_cf7fbfc123b0ec419f574f93da0cc6aa = L.circleMarker(
+                [-3.1891333, 101.8576418],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_506e26f0850d42e68b32c05d155149fd = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_c2c953d68c083b27a4885db75286a440 = $(`<div id="html_c2c953d68c083b27a4885db75286a440" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Bengkulu Utara<br><b>Area:</b> 45 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_506e26f0850d42e68b32c05d155149fd.setContent(html_c2c953d68c083b27a4885db75286a440);
+            
+        
+
+        circle_marker_cf7fbfc123b0ec419f574f93da0cc6aa.bindPopup(popup_506e26f0850d42e68b32c05d155149fd)
+        ;
+
+        
+    
+    
+            var circle_marker_2b7b1f35705ee95170de0e64f4ee55e9 = L.circleMarker(
+                [2.1534257, 99.7850793],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_956a660e80518a77183cf0e6e34b4f96 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_2ee004fd082ed5c75212d155cb92ed4d = $(`<div id="html_2ee004fd082ed5c75212d155cb92ed4d" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Labuhan Batu<br><b>Area:</b> 80 Ha<br><b>Total Risiko:</b> 30<br><b>Kategori:</b> Sedang</div>`)[0];
+                popup_956a660e80518a77183cf0e6e34b4f96.setContent(html_2ee004fd082ed5c75212d155cb92ed4d);
+            
+        
+
+        circle_marker_2b7b1f35705ee95170de0e64f4ee55e9.bindPopup(popup_956a660e80518a77183cf0e6e34b4f96)
+        ;
+
+        
+    
+    
+            var circle_marker_d3536dff4b8f86b9e2cb5ec74c77553c = L.circleMarker(
+                [1.07031, 124.4361622],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_d7c9f45171df67ba387ed4977c2ebda3 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6b101d719c655d72d58a9ed75574fc45 = $(`<div id="html_6b101d719c655d72d58a9ed75574fc45" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Minahasa Selatan<br><b>Area:</b> 35 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_d7c9f45171df67ba387ed4977c2ebda3.setContent(html_6b101d719c655d72d58a9ed75574fc45);
+            
+        
+
+        circle_marker_d3536dff4b8f86b9e2cb5ec74c77553c.bindPopup(popup_d7c9f45171df67ba387ed4977c2ebda3)
+        ;
+
+        
+    
+    
+            var circle_marker_6e1e5fae8ee65b6b87b3be24da047fbc = L.circleMarker(
+                [-3.1642057, 128.4836558],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_7db991db53b7b6d6c03ef2b7617872e5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_03915b8f08622a176fa8bb795c46e2e0 = $(`<div id="html_03915b8f08622a176fa8bb795c46e2e0" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Seram Bagian Barat<br><b>Area:</b> 40 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_7db991db53b7b6d6c03ef2b7617872e5.setContent(html_03915b8f08622a176fa8bb795c46e2e0);
+            
+        
+
+        circle_marker_6e1e5fae8ee65b6b87b3be24da047fbc.bindPopup(popup_7db991db53b7b6d6c03ef2b7617872e5)
+        ;
+
+        
+    
+    
+            var circle_marker_586c08b9c236946c2bf80fa17b8e6a70 = L.circleMarker(
+                [-7.7925193, 140.0183252],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_1b893c6d0ebd8f4a15e89d96b7535194 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_8d18bc71138d636c26a1bc4898fafc9c = $(`<div id="html_8d18bc71138d636c26a1bc4898fafc9c" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Merauke<br><b>Area:</b> 55 Ha<br><b>Total Risiko:</b> 60<br><b>Kategori:</b> Tinggi</div>`)[0];
+                popup_1b893c6d0ebd8f4a15e89d96b7535194.setContent(html_8d18bc71138d636c26a1bc4898fafc9c);
+            
+        
+
+        circle_marker_586c08b9c236946c2bf80fa17b8e6a70.bindPopup(popup_1b893c6d0ebd8f4a15e89d96b7535194)
+        ;
+
+        
+    
+    
+            var circle_marker_60f935da2fc2d1535bf8c35bdf5f5a70 = L.circleMarker(
+                [-0.3694842, 109.5123558],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_814a0636138bde6e66a090780b331ff7 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_0bd1a43775c2b616e5a0b37031a8e841 = $(`<div id="html_0bd1a43775c2b616e5a0b37031a8e841" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Kubu Raya<br><b>Area:</b> 70 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_814a0636138bde6e66a090780b331ff7.setContent(html_0bd1a43775c2b616e5a0b37031a8e841);
+            
+        
+
+        circle_marker_60f935da2fc2d1535bf8c35bdf5f5a70.bindPopup(popup_814a0636138bde6e66a090780b331ff7)
+        ;
+
+        
+    
+    
+            var circle_marker_93940ccafdeb98d522c84c8b4e073820 = L.circleMarker(
+                [-0.0226903, 109.3447488],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_0b938b71dd21c9b0240797baafe3a070 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_5c80998f6058ddef7815c5cdd1083fe7 = $(`<div id="html_5c80998f6058ddef7815c5cdd1083fe7" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Pontianak<br><b>Area:</b> 45 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_0b938b71dd21c9b0240797baafe3a070.setContent(html_5c80998f6058ddef7815c5cdd1083fe7);
+            
+        
+
+        circle_marker_93940ccafdeb98d522c84c8b4e073820.bindPopup(popup_0b938b71dd21c9b0240797baafe3a070)
+        ;
+
+        
+    
+    
+            var circle_marker_1de64ae703d4e55ab85cb7045ae8783e = L.circleMarker(
+                [-6.3021906, 107.3046116],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_50be09a578627340897d9a34adcf995f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_42a204cd2bb82fa661afc92f4cbd2260 = $(`<div id="html_42a204cd2bb82fa661afc92f4cbd2260" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Karawang<br><b>Area:</b> 60 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_50be09a578627340897d9a34adcf995f.setContent(html_42a204cd2bb82fa661afc92f4cbd2260);
+            
+        
+
+        circle_marker_1de64ae703d4e55ab85cb7045ae8783e.bindPopup(popup_50be09a578627340897d9a34adcf995f)
+        ;
+
+        
+    
+    
+            var circle_marker_ae6e2de33f38e7962678a272cbb0e249 = L.circleMarker(
+                [-8.3325711, 114.141579],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_69e2a012355ec0759375d770de82f801 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_b168545434152b3d93d770e3a45d5e41 = $(`<div id="html_b168545434152b3d93d770e3a45d5e41" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Banyuwangi<br><b>Area:</b> 50 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_69e2a012355ec0759375d770de82f801.setContent(html_b168545434152b3d93d770e3a45d5e41);
+            
+        
+
+        circle_marker_ae6e2de33f38e7962678a272cbb0e249.bindPopup(popup_69e2a012355ec0759375d770de82f801)
+        ;
+
+        
+    
+    
+            var circle_marker_76633f6ff552a5ffe9bfe36c5adef15e = L.circleMarker(
+                [-2.5389113, 112.949389],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_b3a50a48326be91fd8de22fb12461525 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6398f22f0cbdb5dd3c8fc7feffbcd934 = $(`<div id="html_6398f22f0cbdb5dd3c8fc7feffbcd934" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Sampit<br><b>Area:</b> 75 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_b3a50a48326be91fd8de22fb12461525.setContent(html_6398f22f0cbdb5dd3c8fc7feffbcd934);
+            
+        
+
+        circle_marker_76633f6ff552a5ffe9bfe36c5adef15e.bindPopup(popup_b3a50a48326be91fd8de22fb12461525)
+        ;
+
+        
+    
+    
+            var circle_marker_f86cb79bdb546eec7d4d1be05cd32152 = L.circleMarker(
+                [-7.0578157, 113.2540541],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_3b3fe5bdee905c857576b6b23476be5d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_43d29c0a404eb24e9122610de0f80451 = $(`<div id="html_43d29c0a404eb24e9122610de0f80451" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Sampang<br><b>Area:</b> 30 Ha<br><b>Total Risiko:</b> 30<br><b>Kategori:</b> Sedang</div>`)[0];
+                popup_3b3fe5bdee905c857576b6b23476be5d.setContent(html_43d29c0a404eb24e9122610de0f80451);
+            
+        
+
+        circle_marker_f86cb79bdb546eec7d4d1be05cd32152.bindPopup(popup_3b3fe5bdee905c857576b6b23476be5d)
+        ;
+
+        
+    
+    
+            var circle_marker_ca86891c6a6a80399ddd3ff70f33c37a = L.circleMarker(
+                [-6.8905065, 109.6761489],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_01b7211f2dd233fb91991e8b13e9212f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_3c2e1fc825ee8174764c4135f76a9025 = $(`<div id="html_3c2e1fc825ee8174764c4135f76a9025" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Pekalongan<br><b>Area:</b> 65 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_01b7211f2dd233fb91991e8b13e9212f.setContent(html_3c2e1fc825ee8174764c4135f76a9025);
+            
+        
+
+        circle_marker_ca86891c6a6a80399ddd3ff70f33c37a.bindPopup(popup_01b7211f2dd233fb91991e8b13e9212f)
+        ;
+
+        
+    
+    
+            var circle_marker_0ef108d726df5d461558c0b209a6676f = L.circleMarker(
+                [-6.1169662, 106.1518079],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_c97bd6168fe43d0f5e1d6a97713b520b = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_8107648324be9a0fbb5b7cb8f2700ab8 = $(`<div id="html_8107648324be9a0fbb5b7cb8f2700ab8" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Serang<br><b>Area:</b> 40 Ha<br><b>Total Risiko:</b> 70<br><b>Kategori:</b> Tinggi</div>`)[0];
+                popup_c97bd6168fe43d0f5e1d6a97713b520b.setContent(html_8107648324be9a0fbb5b7cb8f2700ab8);
+            
+        
+
+        circle_marker_0ef108d726df5d461558c0b209a6676f.bindPopup(popup_c97bd6168fe43d0f5e1d6a97713b520b)
+        ;
+
+        
+    
+    
+            var circle_marker_cdf80e81e714399ccb7f6fd9f122c467 = L.circleMarker(
+                [-6.8674488, 109.1378271],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_83267c82b3f7288c3084bd901fc3b14b = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_5e6b2d8bfbd1db1bc7c7de741052c59d = $(`<div id="html_5e6b2d8bfbd1db1bc7c7de741052c59d" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Tegal<br><b>Area:</b> 55 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_83267c82b3f7288c3084bd901fc3b14b.setContent(html_5e6b2d8bfbd1db1bc7c7de741052c59d);
+            
+        
+
+        circle_marker_cdf80e81e714399ccb7f6fd9f122c467.bindPopup(popup_83267c82b3f7288c3084bd901fc3b14b)
+        ;
+
+        
+    
+    
+            var circle_marker_337df2270f98e030072821c4f781ef1c = L.circleMarker(
+                [-8.1688563, 113.7021772],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.0, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_72b8e33b77b6c87a63608b49106e6778 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_872251691a6027721dc1b73657df01ad = $(`<div id="html_872251691a6027721dc1b73657df01ad" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Jember<br><b>Area:</b> 70 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_72b8e33b77b6c87a63608b49106e6778.setContent(html_872251691a6027721dc1b73657df01ad);
+            
+        
+
+        circle_marker_337df2270f98e030072821c4f781ef1c.bindPopup(popup_72b8e33b77b6c87a63608b49106e6778)
+        ;
+
+        
+    
+    
+            var circle_marker_8564039b7f2876543000ff777ebfb76b = L.circleMarker(
+                [-8.1311983, 112.3115572],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.5, "stroke": true, "weight": 3}
+            ).addTo(map_5916c44dfdcb90308e77c3cfa580df75);
+        
+    
+        var popup_36315d139260fe23079c7d65104b2961 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_23c8f89302564cae832649c8fabf2a29 = $(`<div id="html_23c8f89302564cae832649c8fabf2a29" style="width: 100.0%; height: 100.0%;"><b>Lokasi:</b> Blitar<br><b>Area:</b> 45 Ha<br><b>Total Risiko:</b> 0<br><b>Kategori:</b> Rendah</div>`)[0];
+                popup_36315d139260fe23079c7d65104b2961.setContent(html_23c8f89302564cae832649c8fabf2a29);
+            
+        
+
+        circle_marker_8564039b7f2876543000ff777ebfb76b.bindPopup(popup_36315d139260fe23079c7d65104b2961)
+        ;
+
+        
+    
+</script>
+</html>

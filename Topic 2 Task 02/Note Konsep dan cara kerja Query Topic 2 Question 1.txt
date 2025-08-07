@@ -1,0 +1,80 @@
+# Analisis Efisiensi Pendanaan Konservasi terhadap Penyerapan Karbon
+SQL ini dirancang untuk **mengevaluasi seberapa efisien dana konservasi digunakan dalam menyerap emisi karbon (CO₂)**. Fokus analisa diarahkan pada proyek-proyek konservasi yang berdampak langsung pada **penyimpanan karbon (carbon storage)**, dengan membandingkan jumlah karbon yang berhasil diserap terhadap jumlah dana yang dikeluarkan.
+
+
+## Tujuan Utama
+Tujuan dari analisa ini adalah untuk:
+- Mengidentifikasi **proyek konservasi karbon** yang paling **efisien secara anggaran**.
+- Menghitung rasio **ton CO₂ yang diserap per satu juta rupiah**.
+- Memberikan dasar bagi pengambilan keputusan dalam **alokasi dana konservasi** berdasarkan kinerja aktual.
+- Membantu stakeholders memahami nilai ekonomis dari setiap investasi konservasi.
+
+
+## Struktur Konsep dan Cara Kerja Query
+
+### 1. **Tabel yang Digunakan**
+- `funding_sources`: berisi informasi dana proyek, termasuk ID proyek (`Conservation_ID`), nama sumber dana, dan jumlah dana (`Amount_IDR`).
+- `environmental_impact`: mencatat dampak lingkungan dari masing-masing proyek, termasuk jenis dampak (`Impact_Type`) dan jumlah CO₂ yang diserap (`CO2_Sequestration_Tonnes`).
+
+### 2. **JOIN antar Tabel**
+Data digabung berdasarkan `Conservation_ID`, yaitu ID unik dari proyek konservasi, untuk menghubungkan data pendanaan dengan hasil dampak lingkungannya.
+
+### 3. **Filter Data**
+Query hanya memilih data dengan `Impact_Type = 'Carbon Storage'`, sehingga hanya proyek penyimpanan karbon yang dianalisis.
+
+### 4. **Perhitungan Efisiensi**
+Rasio efisiensi dihitung dengan rumus:
+CO₂ per 1 juta IDR = Total CO₂ diserap / (Jumlah dana / 1.000.000)
+
+Hasilnya memberikan metrik: **berapa ton CO₂ yang diserap setiap 1 juta rupiah** dana.
+
+### 5. **Pengurutan Hasil**
+Hasil diurutkan dari proyek dengan **efisiensi tertinggi ke terendah**, sehingga proyek paling berdampak langsung terlihat di atas.
+
+
+## Manfaat Analisa
+- **Mendeteksi proyek konservasi yang hemat biaya** dan berdampak tinggi.
+- Memberikan alat ukur objektif untuk **perbandingan antar proyek** berbasis rasio hasil terhadap biaya.
+- Menjadi dasar evaluasi dalam pelaporan efektivitas investasi konservasi kepada donor, lembaga pendanaan, dan regulator.
+- Memperkuat akuntabilitas dan transparansi dalam program lingkungan berbasis dana publik atau swasta.
+
+
+## Interpretasi Hasil
+
+Hasil query akan menampilkan daftar proyek konservasi dengan kolom:
+- **Sumber Dana**: dari mana dana berasal.
+- **Jumlah Dana (IDR)**: total dana yang digunakan.
+- **Penyerapan CO₂**: jumlah karbon yang berhasil diserap (dalam ton).
+- **Efisiensi (CO₂ per juta IDR)**: metrik utama untuk analisa.
+- **Jenis Dampak**: dalam hal ini selalu `'Carbon Storage'`.
+
+### Contoh Interpretasi:
+| Conservation_ID | Sumber Dana     | Amount_IDR | CO₂ (Ton) | CO₂ per juta IDR |
+|-----------------|------------------|------------|-----------|------------------|
+| 101             | Lembaga A         | 10.000.000 | 50        | 5.00             |
+| 102             | Donatur B         | 20.000.000 | 60        | 3.00             |
+| 103             | Pemerintah C      | 15.000.000 | 75        | 5.00             |
+
+Interpretasi:
+- Proyek 101 dan 103 memiliki efisiensi yang sama (5 ton per juta IDR), meskipun jumlah CO₂-nya berbeda.
+- Proyek 102 terlihat kurang efisien meskipun menyerap karbon dalam jumlah besar, karena biayanya lebih tinggi.
+
+
+## Rekomendasi Analisa
+Berdasarkan hasil analisa ini, berikut rekomendasi yang dapat diambil:
+1. **Prioritaskan proyek dengan efisiensi tinggi** dalam pendanaan selanjutnya, karena mampu menyerap karbon lebih banyak per unit dana.
+2. Gunakan hasil ini untuk **membuat klasifikasi proyek**: efisiensi tinggi, sedang, dan rendah.
+3. Lakukan investigasi lebih lanjut pada proyek dengan **efisiensi rendah**, untuk mengetahui penyebabnya (misalnya: biaya overhead, lokasi geografis, teknologi yang digunakan).
+4. Jadikan metrik ini sebagai bagian dari **framework evaluasi rutin** dalam program konservasi karbon.
+5. Gunakan visualisasi tambahan (grafik batang, bubble chart, atau heatmap) untuk menyampaikan hasil ke publik atau pengambil keputusan.
+
+
+## Kesimpulan
+
+Analisa ini memberikan **indikator kuantitatif sederhana namun kuat** untuk mengukur efektivitas dana konservasi dalam menyerap karbon. Dengan membandingkan CO₂ per juta IDR, organisasi dapat lebih bijak dalam:
+- Menentukan proyek prioritas
+- Menyusun anggaran
+- Menyampaikan bukti kinerja lingkungan kepada para pemangku kepentingan
+
+Langkah selanjutnya adalah mengintegrasikan metrik ini ke dalam **sistem monitoring dan evaluasi jangka panjang** dari program konservasi karbon yang berbasis data dan efisiensi.
+

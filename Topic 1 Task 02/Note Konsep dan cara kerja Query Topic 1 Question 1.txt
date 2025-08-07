@@ -1,0 +1,44 @@
+Tujuan Utama
+Tujuan utama dari SQL query ini adalah untuk menganalisis pengaruh status izin konservasi terhadap indikator lingkungan, yaitu:
+
+Kerapatan pohon
+
+Kualitas air
+
+Jumlah proyek konservasi
+
+Query ini merangkum data biodiversitas berdasarkan status perizinan, untuk mengetahui apakah status izin tertentu cenderung berkorelasi dengan kondisi lingkungan yang lebih baik atau buruk.
+
+Struktur Konsep dan Cara Kerja Query
+1. SELECT Clause
+- Mengambil status izin konservasi.
+- Menghitung rata-rata dari kerapatan pohon.
+- Mengkonversi kualitas air ke bentuk skor numerik (3 = Baik, 2 = Sedang, 1 = Buruk), lalu diambil rata-ratanya.
+- Menghitung jumlah proyek untuk masing-masing status izin.
+
+2. JOIN Clause
+Menggabungkan dua tabel: regulatory_permits (izin) dan biodiversity_monitoring (lingkungan) berdasarkan Conservation_ID.
+
+3. GROUP BY
+Mengelompokkan hasil berdasarkan status izin konservasi seperti Approved, Pending, atau Denied.
+
+4. ORDER BY
+Mengurutkan hasil dari status izin dengan kerapatan pohon tertinggi ke terendah.
+
+Manfaat Analisa
+- Analisa ini sangat bermanfaat untuk:
+- Mengevaluasi efektivitas kebijakan izin konservasi terhadap kondisi lingkungan.
+- Menunjukkan apakah proyek dengan status izin tertentu (misalnya disetujui) cenderung menjaga biodiversitas dengan lebih baik.
+- Memberikan bukti berbasis data untuk perbaikan kebijakan perizinan dan pengawasan.
+
+
+Interpretasi:
+- Proyek dengan izin "Approved" memiliki rata-rata kerapatan pohon dan kualitas air lebih tinggi dibandingkan proyek lain.
+- Proyek tanpa izin yang disetujui mungkin memiliki dampak lingkungan lebih negatif.
+- Skor kualitas air mendekati 3 berarti semakin baik.
+
+Rekomendasi Analisa
+- Prioritaskan pengawasan pada proyek yang izinnya ditolak atau belum disetujui, karena mereka menunjukkan indikasi dampak ekologis lebih buruk.
+- Gunakan hasil ini untuk menetapkan kriteria izin yang lebih ketat, misalnya hanya menyetujui proyek yang memiliki rencana konservasi jangka panjang.
+- Lakukan pemantauan berkala pada proyek dengan skor kualitas air rendah untuk mencegah kerusakan lebih lanjut.
+- Buat laporan visual tambahan, misalnya grafik batang atau heatmap, untuk mempermudah pemahaman bagi pihak non-teknis atau pemangku kebijakan.

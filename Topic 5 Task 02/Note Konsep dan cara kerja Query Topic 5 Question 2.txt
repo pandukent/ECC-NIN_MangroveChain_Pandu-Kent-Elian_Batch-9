@@ -1,0 +1,77 @@
+### Tujuan Utama
+Query ini bertujuan untuk:
+- Menganalisis hubungan antara **level akses** (`Access_Level`) dan **jenis data kepatuhan** (`Data_Type`) dengan **aktivitas transaksi karbon** pada sistem blockchain.
+- Mengukur volume dan karakteristik transaksi berdasarkan dimensi kepatuhan dan aksesibilitas data.
+
+
+### Struktur Konsep & Cara Kerja
+- **Sumber Data**:
+  - `blockchain_data_compliance`: Menyediakan metadata tentang jenis data dan tingkat akses terkait konservasi karbon.
+  - `blockchain_transactions`: Menyediakan data transaksi karbon yang terjadi pada masing-masing proyek konservasi.
+
+- **Join Tabel**:
+  - Tabel `blockchain_data_compliance` di-*left join* dengan `blockchain_transactions` berdasarkan `Conservation_ID`.
+  - *LEFT JOIN* digunakan untuk memastikan semua data compliance tetap ditampilkan meskipun tidak memiliki transaksi karbon.
+
+- **Agregasi Data**:
+  - Jumlah transaksi dihitung dengan `COUNT`.
+  - Total karbon yang ditransfer dijumlahkan dengan `SUM`.
+  - Rata-rata karbon per transaksi dihitung dengan `AVG`.
+
+- **Pengelompokan Data**:
+  - Data dikelompokkan berdasarkan kombinasi `Access_Level` dan `Data_Type`.
+
+- **Pengurutan Data**:
+  - Hasil diurutkan berdasarkan total karbon tertinggi ke terendah (`ORDER BY total_karbon DESC`).
+
+
+### Manfaat Analisis
+1. **Menilai Dampak Transaksi Berdasarkan Akses Data**  
+   Apakah level akses tertentu (misalnya publik vs terbatas) berkaitan dengan volume karbon yang ditransaksikan?
+
+2. **Mengidentifikasi Efektivitas Jenis Data**  
+   Mengetahui jenis data compliance mana yang mendukung aktivitas transaksi karbon paling signifikan.
+
+3. **Membantu Audit dan Transparansi**  
+   Memberikan gambaran data mana yang perlu diawasi atau dioptimalkan dari segi keamanan dan efektivitas.
+
+4. **Strategi Pengelolaan Data**  
+   Mendukung pengambilan keputusan terkait pembukaan akses atau pemodelan data yang efektif.
+
+
+### Interpretasi Hasil
+Contoh interpretasi dari hasil query:
+
+| Access_Level | Data_Type     | jumlah_transaksi | total_karbon | rata_karbon |
+|--------------|---------------|------------------|--------------|-------------|
+| Publik       | Legal         | 100              | 50,000       | 500         |
+| Terbatas     | Financial     | 50               | 30,000       | 600         |
+| Internal     | Environmental | 20               | 5,000        | 250         |
+
+**Penjelasan**:
+- Data **publik** dengan jenis **Legal** memiliki jumlah dan total karbon tertinggi, menunjukkan efisiensi atau kepercayaan tinggi.
+- Data **terbatas** memiliki rata-rata karbon per transaksi tertinggi, meskipun jumlahnya lebih sedikit.
+- Data **internal** berkontribusi rendah terhadap transaksi karbon, mungkin karena keterbatasan akses atau nilai data yang rendah di pasar.
+
+
+### Rekomendasi Analisis
+1. **Evaluasi Level Akses**  
+   Tinjau apakah membuka akses publik terhadap jenis data tertentu berdampak pada peningkatan transaksi karbon.
+
+2. **Optimalkan Jenis Data**  
+   Fokus pada penguatan jenis data yang berkorelasi tinggi dengan aktivitas karbon, seperti data legal dan finansial.
+
+3. **Kaji Keamanan dan Privasi**  
+   Data dengan akses publik yang berdampak tinggi harus dipastikan aman dan tetap mematuhi regulasi.
+
+4. **Lanjutkan dengan Tren Waktu**  
+   Tambahkan dimensi waktu untuk melihat apakah pola ini konsisten dalam jangka panjang.
+
+
+### Kesimpulan
+Query ini memberikan wawasan penting mengenai:
+- Hubungan antara **aksesibilitas data** dan **efektivitas transaksi karbon**.
+- Identifikasi jenis data yang paling berkontribusi terhadap aktivitas di blockchain konservasi karbon.
+- Memberikan dasar kuat untuk **pengambilan keputusan strategis**, baik dalam hal **keterbukaan data**, **prioritas pengumpulan data**, maupun **optimalisasi dampak lingkungan melalui teknologi blockchain**.
+
+

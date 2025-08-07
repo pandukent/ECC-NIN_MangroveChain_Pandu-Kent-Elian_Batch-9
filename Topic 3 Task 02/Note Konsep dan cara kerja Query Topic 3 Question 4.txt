@@ -1,0 +1,75 @@
+Tujuan Utama
+Query ini digunakan untuk:
+- Menganalisis statistik kegiatan komunitas dalam proyek konservasi.
+- Mengukur hubungan (korelasi) antara jumlah kegiatan dan jumlah kredit karbon yang dihasilkan.
+- Memberikan gambaran menyeluruh per proyek: intensitas kegiatan, partisipasi, manfaat, efisiensi pencatatan, dan hasil akhir berupa kredit karbon.
+
+Struktur dan Penjelasan Komponen
+1. CTE (WITH activity_stats AS (...))
+Digunakan untuk menyusun data statistik per proyek terlebih dahulu sebelum dianalisis lebih lanjut.
+
+Kolom dalam CTE:
+- ce.Conservation_ID: ID proyek konservasi.
+- mc.Location: Lokasi proyek.
+- mc.Carbon_Credits: Total kredit karbon yang dihasilkan oleh proyek.
+- COUNT(ce.Engage_ID) → Activity_Count: Jumlah kegiatan komunitas dalam proyek tersebut.
+- AVG(ce.Participants) → Avg_Participants: Rata-rata peserta per kegiatan.
+- SUM(ce.Benefit_Distributed) → Total_Benefit: Total manfaat ekonomi (dalam IDR atau satuan lain) yang didistribusikan ke masyarakat.
+- AVG(mc.Date_Recorded - ce.Engagement_Date) → Avg_Days_Between_Activity_And_Record: - Rata-rata selisih hari antara tanggal kegiatan dan tanggal pencatatan di sistem.
+
+2. Main SELECT
+Mengambil semua kolom dari activity_stats dan menambahkan analisis korelasi:
+- CORR(...) OVER (): Fungsi agregat window untuk menghitung korelasi Pearson antara dua variabel:
+- Activity_Count: Banyaknya kegiatan
+- Carbon_Credits: Kredit karbon yang dihasilkan
+
+Korelasi ini bersifat global (dihitung sekali untuk semua baris) dan ditampilkan di setiap baris.
+
+3. ORDER BY
+Mengurutkan hasil dari proyek yang menghasilkan kredit karbon tertinggi ke yang terendah.
+Mempermudah identifikasi proyek paling berdampak dari sisi lingkungan.
+
+Contoh Output yang Diharapkan
+Conservation_ID	Location	Carbon_Credits	Activity_Count	Avg_Participants	Total_Benefit	Avg_Days_Between_Activity_And_Record	Correlation_Activity_Carbon
+C007	Rembang	180.0	5	42.5	1,250,000	5.0	0.42
+C003	Demak	150.0	4	40.0	1,000,000	6.3	0.42
+C002	Jember	100.0	2	30.0	800,000	4.7	0.42
+
+Nilai korelasi akan sama di setiap baris, karena dihitung sekali secara keseluruhan (dari seluruh dataset).
+
+Manfaat Analisis Ini
+Evaluasi Efektivitas Proyek:
+- Apakah lebih banyak kegiatan komunitas berkontribusi pada lebih banyak kredit karbon?
+- Monitoring Pelaksanaan Proyek:
+- Cek apakah pencatatan dilakukan tepat waktu (Avg_Days_Between...).
+
+Penilaian Dampak Sosial:
+- Total manfaat ekonomi (Total_Benefit) bisa jadi indikator pemberdayaan masyarakat.
+
+Makna Korelasi
+Nilai korelasi (Correlation_Activity_Carbon) berkisar antara:
++1 → Hubungan sangat positif (semakin banyak kegiatan, semakin banyak kredit karbon).
+0 → Tidak ada hubungan linier.
+-1 → Hubungan sangat negatif (semakin banyak kegiatan, semakin sedikit kredit karbon).
+
+Jika hasilnya misalnya 0.42, maka:
+
+Ada korelasi positif sedang antara jumlah kegiatan dan kredit karbon. Artinya, kegiatan masyarakat kemungkinan berkontribusi terhadap peningkatan karbon terserap, meskipun tidak sepenuhnya linear.
+
+Analisis Hasil:
+Dari hasil query terlihat bahwa:
+- Korelasi Positif: Ada korelasi moderat (0.42) antara jumlah kegiatan dan kredit karbon
+- Waktu Respons: Rata-rata pencatatan kredit karbon dilakukan 0-7 hari setelah kegiatan
+- Konsistensi: Semua proyek hanya memiliki 1 kegiatan yang tercatat
+- Pola Temporal: Tidak ada pola jelas antara waktu kegiatan dan kredit karbon
+
+Interpretasi:
+Hasil ini menunjukkan bahwa:
+- Kegiatan masyarakat mungkin berkontribusi pada peningkatan kredit karbon
+- Efek kegiatan terlihat dalam waktu singkat (kurang dari seminggu)
+- Data yang terbatas (hanya 1 kegiatan per proyek) membuat analisis temporal kurang akurat
+
+Rekomendasi:
+- Pelacakan Lebih Lama: Lakukan pencatatan kegiatan dan kredit karbon dalam periode lebih panjang
+- Analisis Lanjutan: Gunakan model statistik lebih canggih dengan data lebih banyak
+- Studi Lapangan: Verifikasi hubungan kausal antara kegiatan masyarakat dan biodiversitas

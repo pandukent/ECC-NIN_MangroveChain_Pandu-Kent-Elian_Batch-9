@@ -1,0 +1,21 @@
+conservation_id,location,area_ha,total_risiko,kategori_risiko,latitude,longitude
+C001,Aceh Jaya,50,0,Rendah,4.8114844,95.7001915
+C002,Takalar,75,40,Sedang,-5.4066541,119.5375417
+C003,Tanah Laut,30,60,Tinggi,-3.8440385,114.9888593
+C004,Lampung Barat,60,0,Rendah,-5.111704,104.3057867
+C005,Bengkulu Utara,45,0,Rendah,-3.1891333,101.8576418
+C006,Labuhan Batu,80,30,Sedang,2.1534257,99.7850793
+C007,Minahasa Selatan,35,0,Rendah,1.07031,124.4361622
+C008,Seram Bagian Barat,40,0,Rendah,-3.1642057,128.4836558
+C009,Merauke,55,60,Tinggi,-7.7925193,140.0183252
+C010,Kubu Raya,70,0,Rendah,-0.3694842,109.5123558
+C011,Pontianak,45,0,Rendah,-0.0226903,109.3447488
+C012,Karawang,60,0,Rendah,-6.3021906,107.3046116
+C013,Banyuwangi,50,0,Rendah,-8.3325711,114.141579
+C014,Sampit,75,0,Rendah,-2.5389113,112.949389
+C015,Sampang,30,30,Sedang,-7.0578157,113.2540541
+C016,Pekalongan,65,0,Rendah,-6.8905065,109.6761489
+C017,Serang,40,70,Tinggi,-6.1169662,106.1518079
+C018,Tegal,55,0,Rendah,-6.8674488,109.1378271
+C019,Jember,70,0,Rendah,-8.1688563,113.7021772
+C020,Blitar,45,0,Rendah,-8.1311983,112.3115572

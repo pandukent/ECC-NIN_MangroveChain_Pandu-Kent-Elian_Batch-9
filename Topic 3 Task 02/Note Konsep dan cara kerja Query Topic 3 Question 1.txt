@@ -1,0 +1,60 @@
+Tujuan Utama
+Query ini digunakan untuk menganalisis keterlibatan masyarakat (community engagement) berdasarkan jenis aktivitas (Activity_Type) dalam proyek konservasi mangrove. Hasilnya memberikan insight tentang:
+- Seberapa sering tiap aktivitas dilakukan per proyek.
+- Rata-rata jumlah peserta per aktivitas.
+- Total manfaat ekonomi (dalam bentuk distribusi) dari aktivitas tersebut.
+
+Struktur dan Penjelasan Komponen
+1. SELECT
+- ce.Conservation_ID: Mengidentifikasi proyek konservasi.
+- mc.Location: Menyediakan lokasi geografis proyek (dari tabel mangrove_conservation_records).
+- ce.Activity_Type: Menunjukkan jenis kegiatan masyarakat (misalnya: pelatihan, pembersihan pantai, dll).
+- COUNT(*) AS Frequency: Menghitung berapa kali aktivitas tersebut dilakukan dalam satu proyek.
+- AVG(ce.Participants): Menghitung rata-rata jumlah peserta dari kegiatan tersebut.
+- SUM(ce.Benefit_Distributed): Menjumlahkan total manfaat yang dibagikan kepada masyarakat dari aktivitas tersebut.
+
+2. FROM & JOIN
+Menggabungkan data dari dua tabel:
+- community_engagement → berisi data aktivitas masyarakat.
+- mangrove_conservation_records → berisi info proyek dan lokasinya.
+- Penggabungan berdasarkan Conservation_ID yang sama di kedua tabel.
+
+3. GROUP BY
+Pengelompokan data dilakukan per:
+- Proyek konservasi (Conservation_ID)
+- Lokasi
+- Jenis aktivitas
+
+Setiap kombinasi unik akan menjadi satu baris hasil (aggregasi).
+
+4. ORDER BY
+Dalam setiap proyek, jenis aktivitas diurutkan berdasarkan frekuensi tertinggi → memberi informasi aktivitas mana yang paling dominan dilakukan.
+
+Contoh Output yang Diharapkan
+Conservation_ID	Location	Activity_Type	Frequency	Avg_Participants	Total_Benefit
+C001	Pontianak	Pelatihan	3	25.67	3,750,000
+C001	Pontianak	Penanaman	2	30.00	2,500,000
+C002	Bengkulu	Sosialisasi	1	20.00	1,000,000
+
+Manfaat Analisis Ini
+- Mengidentifikasi aktivitas yang paling sering dilakukan di setiap proyek.
+- Menilai partisipasi masyarakat untuk tiap jenis kegiatan.
+- Melihat kontribusi ekonomi langsung melalui distribusi manfaat.
+- Menyediakan dasar untuk perencanaan ulang kegiatan atau alokasi dana di masa depan.
+
+Analisis Hasil:
+Dari hasil query terlihat bahwa:
+- Frekuensi Seragam: Setiap jenis kegiatan hanya dilakukan sekali per proyek dalam dataset ini
+- Partisipasi: Workshop cenderung memiliki peserta lebih banyak (rata-rata 10-15 orang) dibanding konsultasi (8-9 orang)
+- Manfaat Ekonomi: Konsultasi memiliki manfaat ekonomi yang lebih besar per kegiatan dibanding jenis lainnya
+
+Interpretasi:
+Hasil ini menunjukkan bahwa:
+- Mungkin ada bias dalam dataset karena setiap jenis kegiatan hanya direkam sekali per proyek
+- Workshop lebih efektif dalam menjangkau lebih banyak peserta
+- Konsultasi mungkin melibatkan transfer manfaat ekonomi yang lebih signifikan
+
+Rekomendasi:
+- Diversifikasi Kegiatan: Lakukan lebih banyak variasi kegiatan dalam setiap proyek
+- Pelacakan Lebih Detail: Rekam frekuensi kegiatan yang lebih akurat
+- Analisis Longitudinal: Lakukan studi lanjutan untuk melihat perkembangan frekuensi kegiatan dari waktu ke waktu

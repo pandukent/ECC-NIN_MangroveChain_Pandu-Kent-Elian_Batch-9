@@ -1,0 +1,77 @@
+### Tujuan Utama
+Query ini bertujuan untuk:
+- Menganalisis **jumlah izin regulasi yang disetujui per bulan** dan menghubungkannya dengan **aktivitas transaksi karbon** pada bulan yang sama.
+- Memberikan gambaran bulanan tentang hubungan antara persetujuan izin dan transaksi karbon dalam sistem berbasis blockchain.
+
+
+### Struktur Konsep & Cara Kerja
+### 1. **CTE (Common Table Expressions)**
+
+- **`bulan_izin`**:
+  - Mengambil data dari tabel `regulatory_permits`.
+  - Mengelompokkan berdasarkan bulan (`DATE_TRUNC`) dari tanggal persetujuan (`Approval_Date`).
+  - Menghitung jumlah izin yang disetujui per bulan.
+
+- **`bulan_transaksi`**:
+  - Mengambil data dari tabel `blockchain_transactions`.
+  - Mengelompokkan berdasarkan bulan (`DATE_TRUNC`) dari tanggal transaksi (`Transaction_Date`).
+  - Menghitung jumlah transaksi karbon dan total karbon yang ditransfer per bulan.
+
+### 2. **JOIN Data Bulanan**
+
+- Data dari `bulan_izin` digabungkan (LEFT JOIN) dengan `bulan_transaksi` berdasarkan kolom `bulan`.
+- Menggunakan LEFT JOIN agar semua bulan dengan izin tetap ditampilkan meskipun tidak ada transaksi karbon.
+
+### 3. **Output & Urutan**
+
+- Menampilkan kolom:
+  - `bulan`
+  - `jumlah_izin`
+  - `jumlah_transaksi`
+  - `total_karbon`
+- Hasil diurutkan berdasarkan `bulan` secara kronologis.
+
+
+### Manfaat Analisis
+1. **Mengukur Dampak Regulasi terhadap Aktivitas Transaksi**  
+   Menunjukkan apakah peningkatan izin regulasi memicu peningkatan transaksi karbon.
+
+2. **Monitoring Kinerja Bulanan**  
+   Memudahkan pemantauan aktivitas blockchain karbon dan implementasi izin lingkungan dari waktu ke waktu.
+
+3. **Identifikasi Tren Musiman atau Waktu Tertentu**  
+   Apakah ada bulan tertentu yang konsisten menunjukkan aktivitas tinggi atau rendah?
+
+4. **Dasar Evaluasi Kebijakan**  
+   Memberikan data historis yang dapat digunakan untuk mengevaluasi efektivitas kebijakan regulasi terhadap pasar karbon.
+
+
+### Interpretasi Hasil
+- **Korelasi Positif**: Pada bulan-bulan seperti Maret dan April, peningkatan jumlah izin disertai dengan peningkatan transaksi dan total karbon.
+- **Gap Aktivitas**: Pada bulan tertentu, seperti Mei, jumlah izin ada tetapi tidak ada transaksi karbon, menunjukkan potensi keterlambatan implementasi.
+- **Volatilitas**: Fluktuasi jumlah izin dan transaksi bisa menunjukkan respons terhadap kebijakan baru, musim, atau faktor eksternal lainnya.
+
+
+### Rekomendasi Analisis
+1. **Tambahkan Dimensi Wilayah atau Jenis Izin**  
+   Agar bisa melihat apakah izin di daerah tertentu lebih berdampak pada transaksi karbon.
+
+2. **Analisis Time Lag**  
+   Tinjau apakah ada keterlambatan antara izin diterbitkan dan transaksi karbon dilakukan.
+
+3. **Tingkatkan Konektivitas Data**  
+   Sinkronkan data izin dan transaksi untuk melacak alur dari izin → proyek → transaksi.
+
+4. **Integrasi dengan Target Nasional/Internasional**  
+   Bandingkan output dengan target emisi atau kredit karbon untuk menilai pencapaian.
+
+
+### Kesimpulan
+Query ini menyajikan analisis penting tentang:
+
+- **Hubungan antara izin regulasi dan transaksi karbon per bulan**.
+- Memberikan indikasi apakah **aktivitas pasar karbon mengikuti tren persetujuan izin**.
+- Menjadi dasar untuk **pengambilan keputusan kebijakan lingkungan**, alokasi sumber daya, dan pemantauan efektivitas sistem perdagangan karbon berbasis blockchain.
+
+Analisis semacam ini sangat berguna untuk **lembaga pemerintah, lembaga lingkungan, dan pelaku pasar karbon** yang ingin memahami keterkaitan antara kebijakan dan implementasi di lapangan.
+

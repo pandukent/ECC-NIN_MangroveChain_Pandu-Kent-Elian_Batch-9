@@ -1,0 +1,65 @@
+Tujuan Utama
+Query ini digunakan untuk mengukur tingkat partisipasi masyarakat dalam proyek konservasi, dengan membandingkan jumlah peserta kegiatan dengan jumlah total anggota komunitas yang tersedia di setiap proyek. Selain itu, query juga memberi peringkat proyek berdasarkan tingkat partisipasi.
+
+Struktur dan Penjelasan Komponen
+1. CTE (WITH community_stats AS (...))
+CTE atau Common Table Expression ini digunakan untuk menyusun data ringkasan partisipasi komunitas per proyek sebelum dianalisis lebih lanjut.
+
+Penjelasan kolom:
+- ce.Conservation_ID: ID proyek konservasi.
+- mc.Location: Lokasi proyek.
+- COUNT(DISTINCT cm.Member_ID) → Total_Community_Members: Jumlah unik anggota komunitas (menghindari duplikasi).
+- SUM(ce.Participants) → Total_Participants: Jumlah total peserta dari semua aktivitas dalam satu proyek.
+
+SUM(...) * 100 / COUNT(...) → Participation_Percentage: Persentase partisipasi, yaitu:
+
+(Total Peserta / Jumlah Anggota Komunitas)
+×
+100
+(Total Peserta / Jumlah Anggota Komunitas)×100
+Digunakan NULLIF(..., 0) untuk menghindari pembagian dengan nol jika tidak ada anggota terdaftar.
+
+2. CROSS JOIN
+CROSS JOIN menyebabkan setiap baris dari community_engagement digabungkan dengan setiap baris dari community_members. Jika tidak disaring lebih lanjut (misalnya berdasarkan Conservation_ID)
+
+3. GROUP BY
+Mengelompokkan data per proyek dan lokasi.
+Setiap baris hasilnya mewakili satu proyek konservasi di satu lokasi.
+
+4. Main SELECT
+Mengambil semua metrik dari CTE.
+
+RANK() OVER (...) digunakan untuk memberi peringkat proyek berdasarkan tingkat partisipasi dari yang tertinggi ke terendah.
+
+5. ORDER BY
+Menampilkan proyek dengan partisipasi tertinggi terlebih dahulu, untuk membantu mengidentifikasi proyek yang paling efektif melibatkan masyarakat.
+
+Contoh Output yang Diharapkan
+Conservation_ID	Location	Total_Community_Members	Total_Participants	Participation_Percentage	Participation_Rank
+C001	Serang	50	45	90.00	1
+C002	Pontianak	40	20	50.00	2
+C003	Jember	60	25	41.67	3
+
+Manfaat Analisis Ini
+- Memberikan wawasan tentang seberapa besar keterlibatan masyarakat dalam proyek konservasi.
+- Memudahkan dalam mengidentifikasi proyek yang membutuhkan peningkatan partisipasi.
+- Mendukung pembuatan kebijakan berbasis data seperti:
+- Perluasan komunikasi ke komunitas dengan partisipasi rendah.
+- Insentif untuk proyek dengan keterlibatan tinggi.
+
+Analisis Hasil:
+Dari hasil query terlihat bahwa:
+- Partisipasi Tinggi: Semua proyek menunjukkan persentase partisipasi >100% karena jumlah peserta melebihi anggota komunitas
+- Data Anggota Terbatas: Hanya 1 anggota komunitas yang tercatat per proyek, menunjukkan kemungkinan ketidaklengkapan data
+- Proyek Unggulan: Lampung Barat memiliki partisipasi relatif tertinggi (1500%)
+
+Interpretasi:
+Hasil ini menunjukkan bahwa:
+- Data anggota komunitas mungkin tidak lengkap atau tidak terhubung dengan benar ke proyek
+- Partisipasi sebenarnya mungkin jauh lebih rendah dari yang terlihat
+- Perlu verifikasi dan pelengkapan data anggota komunitas
+
+Rekomendasi:
+- Validasi Data: Verifikasi hubungan antara anggota komunitas dan proyek
+- Pelengkapan Data: Tambahkan data anggota komunitas yang lebih lengkap
+- Metrik Alternatif: Pertimbangkan metrik partisipasi absolut jika data relatif tidak akurat

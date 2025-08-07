@@ -1,0 +1,70 @@
+# Analisis Kepatuhan Proyek terhadap Standar Keamanan Data Blockchain
+Analisa ini berfokus pada pengukuran **tingkat kepatuhan proyek konservasi** terhadap dua indikator utama dalam standar keamanan data blockchain:
+1. **Tingkat enkripsi (Encryption Level)** yang harus *tinggi*.
+2. **Persetujuan data (Consent Obtained)** yang harus *ada/Yes*.
+
+
+## Tujuan Utama
+
+Tujuan dari query ini adalah:
+- Mengukur **presentase kepatuhan data** proyek konservasi terhadap standar keamanan berbasis blockchain.
+- Mengidentifikasi proyek mana yang sudah memenuhi **standar tertinggi** dalam hal perlindungan data.
+- Menyediakan **indikator numerik (dalam persen)** untuk mempermudah pemantauan dan pelaporan tingkat kepatuhan.
+
+
+## Struktur Konsep dan Cara Kerja
+### 1. **CTE (Common Table Expression): `compliance_stats`**
+- Mengelompokkan data dari tabel `blockchain_data_compliance` berdasarkan `Conservation_ID`.
+- Untuk setiap proyek:
+  - **`total_records`**: jumlah total entri terkait data blockchain.
+  - **`compliant_records`**: jumlah entri yang memenuhi syarat:
+    - Enkripsi = 'High'
+    - Persetujuan = 'Yes'
+
+### 2. **Perhitungan Presentase Kepatuhan**
+- Menghitung **presentase kepatuhan** dengan membagi jumlah data yang memenuhi syarat (`compliant_records`) dengan total data (`total_records`), dikalikan 100 dan dibulatkan ke dua desimal.
+
+### 3. **Pengurutan Hasil**
+- Data diurutkan dari proyek dengan tingkat kepatuhan tertinggi ke yang terendah untuk memudahkan identifikasi proyek paling patuh.
+
+
+## Manfaat Analisa
+- **Evaluasi akuntabilitas dan keamanan data** dalam proyek konservasi.
+- Memberikan dasar untuk **audit teknologi dan kepatuhan digital** terhadap prinsip transparansi dan perlindungan data.
+- Membantu organisasi atau regulator dalam **mengidentifikasi risiko pelanggaran privasi atau keamanan data**.
+- Mendukung pelaporan ke publik atau donor mengenai tingkat keandalan sistem data berbasis blockchain.
+
+
+## Interpretasi Hasil
+
+Tabel hasil akan berisi:
+
+| Conservation_ID | Total Records | Compliant Records | Compliance (%) |
+|-----------------|----------------|--------------------|----------------|
+| 101             | 10             | 10                 | 100.00         |
+| 102             | 8              | 5                  | 62.50          |
+| 103             | 12             | 6                  | 50.00          |
+
+### Penjelasan:
+- Proyek dengan **100% kepatuhan** menunjukkan bahwa semua data terenkripsi secara maksimal **dan** memiliki persetujuan data.
+- Proyek dengan **<100%** mungkin memiliki:
+  - Tingkat enkripsi yang tidak sesuai (Medium/Low).
+  - Kurangnya persetujuan data.
+- Proyek dengan **0%** sangat rentan terhadap masalah keamanan dan etika data.
+
+
+## Rekomendasi
+Berdasarkan analisa ini, rekomendasi yang bisa diambil antara lain:
+1. **Audit menyeluruh** terhadap proyek dengan kepatuhan rendah untuk memahami akar permasalahan.
+2. Terapkan **kebijakan internal** agar semua entri data memiliki enkripsi tinggi dan persetujuan sah.
+3. Jadikan **persentase kepatuhan** ini sebagai **Key Performance Indicator (KPI)** untuk evaluasi proyek digital.
+4. Lakukan **pelatihan kepada tim teknis dan hukum** terkait pentingnya kepatuhan data digital.
+5. Kembangkan sistem **pemberitahuan otomatis** saat entri data baru tidak memenuhi standar keamanan.
+
+## Kesimpulan
+Analisis ini memberikan pandangan yang jelas tentang **sejauh mana proyek konservasi menerapkan keamanan dan etika pengelolaan data** dalam sistem blockchain. Tingkat kepatuhan yang tinggi mencerminkan:
+- Kinerja data yang aman
+- Proses administrasi yang transparan
+- Kepatuhan terhadap prinsip digital governance
+
+Sementara itu, proyek dengan tingkat kepatuhan rendah memerlukan perhatian khusus sebelum berlanjut ke fase pendanaan atau ekspansi.

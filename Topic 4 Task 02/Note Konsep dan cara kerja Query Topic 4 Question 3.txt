@@ -1,0 +1,69 @@
+### Analisis Distribusi Kategori Risiko Proyek Konservasi Mangrove
+SQL script ini dirancang untuk menghitung **jumlah dan persentase proyek konservasi** berdasarkan **kategori tingkat risiko** — Tinggi, Sedang, dan Rendah. Analisis ini merupakan bagian dari evaluasi strategis untuk **pengelompokan risiko proyek secara agregat**.
+
+
+### Tujuan Utama
+- Menyediakan **ringkasan statistik** proyek konservasi mangrove berdasarkan tingkat risikonya.
+- Mengidentifikasi **proporsi proyek** yang berada dalam tiap kategori risiko.
+- Mendukung pengambilan keputusan strategis terkait **alokasi sumber daya, pemantauan, dan prioritisasi proyek**.
+
+
+### Struktur Konsep dan Cara Kerja
+#### 1. **Common Table Expression (CTE) risk_categories**
+- Bagian ini menghasilkan kategori risiko untuk setiap proyek konservasi berdasarkan total skor risiko.
+- Tiga kategori ditentukan dengan aturan sebagai berikut:
+  - Tinggi: total_risiko ≥ 60
+  - Sedang: total_risiko ≥ 30 dan < 60
+  - Rendah: total_risiko < 30
+
+#### 2. **Subquery Skor Risiko**
+- Risiko dihitung berdasarkan kombinasi kondisi:
+  - **30 poin**: Izin masih Pending dan batas wilayah Belum Ditentukan.
+  - **40 poin**: Lahan milik komunitas dan akses data terbatas.
+  - **30 poin**: Kualitas air Poor dan proyek bersifat Restoration.
+
+#### 3. **Query Utama**
+- Mengelompokkan proyek berdasarkan kategori_risiko.
+- Menghitung:
+  - Jumlah proyek dalam tiap kategori (jumlah_proyek)
+  - Persentase relatif dari total proyek (persentase)
+- Hasil diurutkan berdasarkan prioritas kategori: Tinggi, Sedang, Rendah.
+
+
+### Manfaat Analisa
+- Memberikan **gambaran makro** tentang distribusi risiko di seluruh portofolio proyek.
+- Membantu dalam **penyusunan kebijakan** alokasi dana, pendampingan teknis, dan mitigasi risiko.
+- Menjadi dasar untuk membuat dasbor visual seperti pie chart atau bar chart distribusi risiko.
+- Menunjukkan **proporsi proyek bermasalah** yang memerlukan perhatian khusus.
+
+
+### Interpretasi Hasil
+
+Contoh hasil output:
+
+| kategori_risiko | jumlah_proyek | persentase |
+|------------------|----------------|-------------|
+| Tinggi           | 15             | 30.0%       |
+| Sedang           | 25             | 50.0%       |
+| Rendah           | 10             | 20.0%       |
+
+### Penjelasan:
+- **30% proyek** berada dalam kategori risiko Tinggi — ini adalah proyek dengan potensi kegagalan atau hambatan tertinggi.
+- **50% proyek** berada di kategori Sedang, membutuhkan monitoring aktif.
+- Hanya **20% proyek** yang tergolong Rendah, artinya memiliki kesiapan operasional yang baik.
+
+### Rekomendasi Analisis
+1. **Fokuskan intervensi teknis dan pendanaan** ke proyek dalam kategori Tinggi.
+2. Lakukan **review lapangan dan manajemen risiko** secara berkala pada proyek kategori Sedang.
+3. Pertahankan keberhasilan proyek Rendah sebagai **model proyek konservasi yang efisien**.
+4. Gunakan hasil ini untuk menyusun **laporan performa institusi** atau stakeholder program.
+5. Integrasikan ke sistem pelaporan nasional sebagai **indikator risiko sektoral** dalam konservasi ekosistem.
+
+
+### Kesimpulan
+Analisis ini menyederhanakan kompleksitas proyek konservasi menjadi tiga kategori risiko yang mudah dimengerti. Hasilnya sangat bermanfaat untuk:
+- Pengambilan keputusan yang cepat dan strategis,
+- Perencanaan jangka pendek dan menengah,
+- Serta pengawasan program konservasi berbasis data.
+
+

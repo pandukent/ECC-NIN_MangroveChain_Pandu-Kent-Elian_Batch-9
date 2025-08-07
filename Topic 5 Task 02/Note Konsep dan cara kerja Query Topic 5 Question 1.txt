@@ -1,0 +1,78 @@
+
+### Tujuan Utama
+
+Query ini bertujuan untuk:
+- Menganalisis **jumlah dan persentase jenis data kepatuhan** (`Data_Type`) berbasis blockchain untuk setiap **lokasi konservasi mangrove**.
+- Menyediakan ringkasan proporsional dari data compliance pada setiap lokasi untuk mendukung **evaluasi kualitas data dan pengambilan keputusan**.
+
+### Struktur Konsep & Cara Kerja
+- **Sumber Data**:
+  - `mangrove_conservation_records`: Menyediakan informasi lokasi konservasi dan ID konservasi.
+  - `blockchain_data_compliance`: Menyediakan jenis kepatuhan data yang terhubung ke ID konservasi.
+
+- **Penggabungan Data**:
+  - Data dari kedua tabel dihubungkan berdasarkan `Conservation_ID`.
+
+- **Pengelompokan & Agregasi**:
+  - Data dikelompokkan berdasarkan lokasi dan jenis data compliance.
+  - Dihitung total (`jumlah_data`) untuk setiap kombinasi tersebut.
+
+- **Perhitungan Persentase**:
+  - Persentase dihitung berdasarkan proporsi data jenis tertentu terhadap total data di lokasi yang sama.
+
+- **Pengurutan**:
+  - Data diurutkan berdasarkan lokasi dan jumlah data tertinggi ke terendah.
+
+
+### Manfaat Analisis
+
+1. **Mengungkap Dominasi Jenis Kepatuhan**  
+   Menunjukkan jenis compliance mana yang paling sering muncul di setiap lokasi.
+
+2. **Evaluasi Keseimbangan Data**  
+   Mempermudah identifikasi lokasi dengan distribusi data yang tidak seimbang.
+
+3. **Meningkatkan Kualitas Basis Data**  
+   Menjadi dasar untuk melengkapi atau mengaudit data yang belum representatif.
+
+4. **Dasar Pengambilan Kebijakan**  
+   Membantu dalam perumusan strategi konservasi dan pelaporan berbasis bukti.
+
+
+### Interpretasi Hasil
+
+Contoh hasil yang mungkin ditampilkan:
+
+| Lokasi   | Jenis Data       | Jumlah Data | Persentase |
+|----------|------------------|-------------|------------|
+| Papua    | Legal            | 80          | 66.7%      |
+| Papua    | Environmental    | 40          | 33.3%      |
+| Bali     | Legal            | 50          | 50.0%      |
+| Bali     | Financial        | 30          | 30.0%      |
+| Bali     | Environmental    | 20          | 20.0%      |
+
+**Interpretasi**:
+- Di Papua, data legal mendominasi (66.7%), sedangkan data lingkungan lebih sedikit.
+- Bali memiliki distribusi yang lebih seimbang antara jenis data.
+- Lokasi dengan dominasi satu jenis data berpotensi belum memiliki dokumentasi compliance yang lengkap.
+
+### Rekomendasi Analisis
+1. **Analisis Waktu**  
+   Tambahkan dimensi waktu untuk melihat tren per tahun atau per bulan.
+
+2. **Bandingkan dengan Target Kepatuhan**  
+   Evaluasi apakah semua lokasi sudah memenuhi semua kategori compliance.
+
+3. **Identifikasi Outlier**  
+   Cari lokasi dengan proporsi data yang ekstrem untuk audit lebih lanjut.
+
+4. **Perluas dengan Data Dampak**  
+   Integrasikan dengan data hasil konservasi untuk menghubungkan compliance dan keberhasilan program.
+
+
+### Kesimpulan
+Query ini menyajikan analisis penting mengenai:
+- **Distribusi dan representasi** data kepatuhan konservasi berbasis blockchain.
+- **Keseimbangan** jenis compliance pada setiap lokasi.
+- Menjadi dasar untuk **pengambilan keputusan berbasis data**, meningkatkan **transparansi**, dan menunjang **efektivitas pengelolaan konservasi**.
+

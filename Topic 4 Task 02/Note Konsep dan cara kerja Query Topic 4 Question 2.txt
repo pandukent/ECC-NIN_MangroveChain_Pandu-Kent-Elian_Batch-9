@@ -1,0 +1,74 @@
+### Analisis Kategori Risiko Proyek Konservasi Mangrove
+Query SQL ini digunakan untuk menghitung dan mengklasifikasikan **tingkat risiko proyek konservasi mangrove** berdasarkan indikator legalitas, sosial, dan ekologi. Analisis ini menghasilkan label kategori risiko (Tinggi, Sedang, Rendah) untuk setiap proyek, sehingga membantu dalam **prioritisasi dan pengambilan keputusan strategis**.
+
+#### Tujuan Utama
+
+Tujuan dari script ini adalah:
+- Mengukur tingkat risiko proyek konservasi berdasarkan kondisi perizinan, sosial, dan lingkungan.
+- Mengklasifikasikan proyek ke dalam kategori risiko untuk mempermudah **manajemen prioritas dan mitigasi**.
+- Menyediakan pendekatan sistematis untuk **evaluasi awal risiko** dalam portofolio proyek konservasi mangrove.
+
+
+#### Struktur Konsep dan Cara Kerja
+
+#### 1. **Pendekatan dengan Common Table Expression (CTE)**
+- Bagian WITH risk_scores AS (...) menyimpan hasil perhitungan risiko sementara dalam bentuk tabel virtual bernama risk_scores.
+- Ini membuat query lebih rapi dan efisien untuk di-maintain.
+
+#### 2. **Sumber Data**
+Data ditarik dari beberapa tabel utama:
+- mangrove_conservation_records → informasi proyek konservasi
+- regulatory_permits → status izin
+- land_tenure_records → kepemilikan & batas lahan
+- blockchain_data_compliance → akses data
+- biodiversity_monitoring → kualitas ekologi (air)
+- conservation_activites → jenis aktivitas konservasi
+
+#### 3. **Perhitungan Skor Risiko**
+Risiko dihitung berdasarkan kondisi berikut:
+- **30 poin**: Jika Permit_Status = 'Pending' dan Boundary_Defined = 'No'
+- **40 poin**: Jika Land_Type = 'Community Land' dan Access_Level = 'Restricted'
+- **30 poin**: Jika Water_Quality = 'Poor' dan Activity_Type = 'Restoration'
+
+Nilai dari ketiga indikator dijumlahkan untuk menghasilkan total_risiko.
+
+#### 4. **Klasifikasi Kategori Risiko**
+Setelah skor dihitung, proyek dikategorikan:
+- **Tinggi**: total_risiko ≥ 60
+- **Sedang**: total_risiko ≥ 30
+- **Rendah**: total_risiko < 30
+
+#### 5. **Pengurutan Hasil**
+Hasil diurutkan berdasarkan total_risiko secara menurun agar proyek dengan risiko tertinggi muncul paling atas.
+
+
+### Manfaat Analisa
+- Memberikan dasar data untuk **penentuan prioritas intervensi konservasi**.
+- Membantu pengambil kebijakan mengenali proyek yang **paling membutuhkan perhatian**.
+- Menyediakan pendekatan terstruktur untuk **pengukuran risiko lintas proyek**.
+- Mendukung perencanaan anggaran dan strategi mitigasi berdasarkan kategori risiko.
+- Membantu transparansi dan akuntabilitas dalam pengelolaan proyek konservasi berbasis risiko.
+
+### Interpretasi Hasil
+
+Contoh hasil output tabel:
+
+| Conservation_ID | Location       | total_risiko | kategori_risiko |
+|-----------------|----------------|---------------|------------------|
+| 205             | Kab. Berau     | 100           | Tinggi           |
+| 301             | Kab. Wakatobi  | 60            | Tinggi           |
+| 412             | Kab. Indramayu | 30            | Sedang           |
+| 118             | Kab. Luwu      | 0             | Rendah           |
+
+**Makna kategori:**
+- **Tinggi**: kombinasi risiko dari aspek legal, sosial, dan ekologi — perlu tindakan segera.
+- **Sedang**: satu atau dua risiko terdeteksi — perlu pemantauan aktif.
+- **Rendah**: proyek relatif aman — dapat dijadikan model atau direplikasi.
+
+### Rekomendasi
+1. **Lakukan intervensi langsung** untuk proyek dengan kategori Tinggi, misalnya: percepatan izin, klarifikasi batas lahan, atau penguatan partisipasi masyarakat.
+2. Gunakan proyek Rendah sebagai **model praktik terbaik** dalam konservasi mangrove.
+3. Jadikan skor dan kategori ini sebagai **indikator kinerja (KPI)** dalam pelaporan keberhasilan konservasi.
+4. Integrasikan hasil ini ke dalam dasbor visual untuk **monitoring lintas waktu dan wilayah**.
+5. Rekomendasikan penggunaan metode serupa untuk **ekosistem lain** seperti hutan gambut atau terumbu karang.
+

@@ -1,0 +1,68 @@
+### Analisis Komponen Risiko Proyek Konservasi Mangrove
+
+SQL ini dirancang untuk mengukur dan mengklasifikasikan **tingkat risiko proyek konservasi mangrove** berdasarkan tiga aspek utama: **izin**, **sosial-masyarakat**, dan **ekologis**. Setiap aspek diberi bobot tertentu, dan hasilnya dihitung sebagai total risiko yang dapat digunakan untuk pengambilan keputusan berbasis data.
+
+#### Tujuan Utama
+- Mengidentifikasi dan mengkuantifikasi **tingkat risiko individu** untuk setiap proyek konservasi mangrove.
+- Memberikan **penilaian numerik risiko** berdasarkan gabungan faktor hukum, sosial, dan lingkungan.
+- Mendukung prioritisasi intervensi dengan dasar **risiko terukur**.
+- Menyediakan data dasar untuk visualisasi, pelaporan risiko, dan strategi mitigasi.
+
+#### Struktur Konsep dan Cara Kerja
+#### 1. **Sumber Data**
+Data diambil dari beberapa tabel kunci yang saling terkait melalui `Conservation_ID`:
+- `mangrove_conservation_records`: informasi umum proyek dan lokasi.
+- `regulatory_permits`: status izin proyek.
+- `land_tenure_records`: tipe kepemilikan lahan dan status batas wilayah.
+- `blockchain_data_compliance`: tingkat akses data proyek.
+- `biodiversity_monitoring`: kualitas lingkungan, khususnya air.
+- `conservation_activites`: jenis kegiatan konservasi yang sedang berjalan.
+
+#### 2. **Komponen Risiko**
+Masing-masing proyek dinilai berdasarkan tiga indikator:
+| Komponen Risiko     | Kriteria                                                                 | Skor |
+|---------------------|--------------------------------------------------------------------------|------|
+| Risiko Izin         | Izin belum selesai & batas wilayah belum didefinisikan                   | 30   |
+| Risiko Masyarakat   | Lahan milik komunitas dengan akses data terbatas (restricted)            | 40   |
+| Risiko Ekologis     | Kualitas air buruk dan proyek sedang dalam tahap restorasi               | 30   |
+
+#### 3. **Perhitungan Total Risiko**
+Total risiko dihitung dengan menjumlahkan semua skor dari masing-masing indikator: total_risiko = risiko_izin + risiko_masyarakat + risiko_ekologis
+
+#### 4. **Pengurutan**
+Hasil akhir diurutkan berdasarkan `total_risiko` secara menurun, agar proyek paling berisiko muncul paling atas dalam tabel hasil.
+
+
+### Manfaat Analisa
+- **Pemantauan risiko multi-aspek** secara cepat dan objektif.
+- Memberikan dasar ilmiah untuk **prioritisasi tindakan lapangan atau anggaran**.
+- Membantu regulator, donor, dan organisasi LSM dalam **mengalokasikan sumber daya** secara lebih efektif.
+- Memberikan sinyal awal terhadap proyek yang membutuhkan perhatian hukum, sosial, atau ekologis.
+
+
+### Interpretasi Hasil
+Hasil query akan terlihat seperti ini:
+
+| Conservation_ID | Lokasi       | Risiko Izin | Risiko Masyarakat | Risiko Ekologis | Total Risiko |
+|------------------|--------------|-------------|--------------------|------------------|---------------|
+| 101              | Kab. X       | 30          | 40                 | 30               | 100           |
+| 102              | Kab. Y       | 0           | 40                 | 30               | 70            |
+| 103              | Kab. Z       | 0           | 0                  | 30               | 30            |
+
+- **Nilai 100** menunjukkan proyek dengan ketiga masalah utama sekaligus, yaitu izin, sosial, dan lingkungan.
+- **Nilai < 30** menunjukkan proyek yang relatif aman dari ketiga jenis risiko.
+
+### Rekomendasi Analisis
+1. **Tindak lanjuti proyek dengan skor risiko tinggi (≥ 60)** dengan audit lapangan dan dialog pemangku kepentingan.
+2. Perbaiki dokumentasi legal dan batas wilayah untuk proyek yang memiliki risiko izin tinggi.
+3. Evaluasi ulang pendekatan partisipasi masyarakat di proyek dengan risiko sosial tinggi.
+4. Untuk proyek dengan risiko ekologis tinggi, perlu penguatan baseline data dan strategi adaptasi restorasi.
+5. Integrasikan hasil ini ke dalam dasbor monitoring nasional konservasi mangrove sebagai indikator risiko proyek.
+
+
+### Kesimpulan
+Analisis ini memberikan pendekatan yang sistematis dan berbasis data dalam mengevaluasi risiko proyek konservasi mangrove. Dengan **menggabungkan indikator legal, sosial, dan ekologi**, pengambil kebijakan dapat:
+- Menyusun strategi mitigasi risiko yang tepat,
+- Meningkatkan keberhasilan implementasi proyek,
+- Dan menjamin transparansi dan akuntabilitas dalam proses konservasi.
+

@@ -1,0 +1,21 @@
+conservation_id,location,area_ha,total_risiko,kategori_risiko
+C001,Aceh Jaya,50,0,Rendah
+C002,Takalar,75,40,Sedang
+C003,Tanah Laut,30,60,Tinggi
+C004,Lampung Barat,60,0,Rendah
+C005,Bengkulu Utara,45,0,Rendah
+C006,Labuhan Batu,80,30,Sedang
+C007,Minahasa Selatan,35,0,Rendah
+C008,Seram Bagian Barat,40,0,Rendah
+C009,Merauke,55,60,Tinggi
+C010,Kubu Raya,70,0,Rendah
+C011,Pontianak,45,0,Rendah
+C012,Karawang,60,0,Rendah
+C013,Banyuwangi,50,0,Rendah
+C014,Sampit,75,0,Rendah
+C015,Sampang,30,30,Sedang
+C016,Pekalongan,65,0,Rendah
+C017,Serang,40,70,Tinggi
+C018,Tegal,55,0,Rendah
+C019,Jember,70,0,Rendah
+C020,Blitar,45,0,Rendah
